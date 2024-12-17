@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    font-family: Helvetica;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.list-item{
+    border: 1px solid #e7e7e7;
+    border-radius: 22px;
+    padding: 22px 26px 22px 26px; 
+}
+
+.timestamp {
+    font-size: 28px;
+    line-height: 32.2px;
+
+}
+
+.description {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+}

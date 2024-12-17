@@ -6,9 +6,9 @@ const app = express();
 const PORT = 5050;
 
 const hardcodedItems: ListItem[] = [
-  { name: "item1", id: 1 },
-  { name: "item2", id: 2 },
-  { name: "item3", id: 3 },
+  { description: "item1", id: 1, timestamp: new Date().toISOString() },
+  { description: "item2", id: 2, timestamp: new Date().toISOString() },
+  { description: "item3", id: 3, timestamp: new Date().toISOString() },
 ];
 
 app.use(
@@ -17,8 +17,21 @@ app.use(
   })
 );
 
+app.use(express.json());
+
 app.get("/list-items", (req: Request, res: Response) => {
-  res.json(hardcodedItems.map((item) => item.name));
+  res.json(hardcodedItems);
+});
+
+app.post("/add-item", (req: Request, res: Response) => {
+  const { description, timestamp } = req.body as ListItem;
+  const newItem: ListItem = {
+    description,
+    id: hardcodedItems.length + 1,
+    timestamp,
+  };
+  hardcodedItems.push(newItem);
+  res.json(newItem);
 });
 
 app.listen(PORT, () => {
